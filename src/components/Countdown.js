@@ -72,7 +72,9 @@ class Countdown extends React.Component {
 
   startCountdown = () => {
     const { hour, min, sec } = this.state;
-    console.log(hour, min, sec);
+    this.resetHour = hour;
+    this.resetMin = min;
+    this.resetSec = sec;
     this.countdown();
     this.timer = setInterval(this.countdown, 1000);
   };
@@ -88,9 +90,9 @@ class Countdown extends React.Component {
     clearInterval(this.timer);
     this.timer = null;
     this.setState({
-      hour: "00",
-      min: "00",
-      sec: "00",
+      hour: this.resetHour,
+      min: this.resetMin,
+      sec: this.resetSec,
       isClockRunning: false,
     });
   };
@@ -150,6 +152,7 @@ class Countdown extends React.Component {
               <button
                 onClick={this.increaseTime}
                 name="hour"
+                disabled={isClockRunning}
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
                 <BiChevronsUp className="pointer-events-none" />
@@ -157,6 +160,7 @@ class Countdown extends React.Component {
               <button
                 onClick={this.increaseTime}
                 name="min"
+                disabled={isClockRunning}
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
                 <BiChevronsUp className="pointer-events-none" />
@@ -164,6 +168,7 @@ class Countdown extends React.Component {
               <button
                 onClick={this.increaseTime}
                 name="sec"
+                disabled={isClockRunning}
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
                 <BiChevronsUp className="pointer-events-none" />
@@ -180,12 +185,14 @@ class Countdown extends React.Component {
               <button
                 onClick={this.decreaseTime}
                 name="hour"
+                disabled={isClockRunning}
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
                 <BiChevronsDown className="pointer-events-none" />
               </button>
               <button
                 onClick={this.decreaseTime}
+                disabled={isClockRunning}
                 name="min"
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
@@ -193,6 +200,7 @@ class Countdown extends React.Component {
               </button>
               <button
                 onClick={this.decreaseTime}
+                disabled={isClockRunning}
                 name="sec"
                 className="bg-gray-800 rounded-lg py-2 px-6 hover:bg-gray-700"
               >
