@@ -104,7 +104,6 @@ class Countdown extends React.Component {
 
       if (hour === "00" && min === "00" && sec === "00") {
         clearInterval(this.timer);
-        alert("times up");
         return {
           isClockRunning: false,
         };
@@ -132,6 +131,13 @@ class Countdown extends React.Component {
         };
       }
     });
+    if (
+      this.state.hour === "00" &&
+      this.state.min === "00" &&
+      this.state.sec === "00"
+    ) {
+      alert("times up");
+    }
   };
 
   render() {
